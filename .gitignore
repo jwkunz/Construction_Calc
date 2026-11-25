@@ -1,0 +1,26 @@
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/
+*.iml
+
+# --- Web ---
+/web/dist/
+# Generated single-file release bundles
+/web/construction_calc_v*.html
+
+# --- Android / Gradle ---
+/Android/.gradle/
+/Android/.kotlin/
+/Android/build/
+/Android/app/build/
+/Android/captures/
+/Android/local.properties
+
+# Build outputs and signing material
+*.apk
+*.aab
+*.keystore
+*.jks
