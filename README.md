@@ -9,7 +9,7 @@ An imperial measurement calculator for construction work: decimals, whole number
 | Where | What |
 |-------|------|
 | **[jwkunz.github.io/Construction_Calc](https://jwkunz.github.io/Construction_Calc/)** | The web app, always the latest `main` (deployed by GitHub Pages) |
-| **[Releases](https://github.com/jwkunz/Construction_Calc/releases)** | `construction-calc-vX.Y.Z.html`, a single self-contained file you can save and open locally, and `construction-calc-vX.Y.Z-debug.apk`, the Android app |
+| **[Releases](https://github.com/jwkunz/Construction_Calc/releases)** | `construction-calc-vX.Y.Z.html`, a single self-contained file you can save and open locally, and `construction-calc-vX.Y.Z.apk`, the Android app |
 
 ## Repository layout
 
@@ -43,11 +43,11 @@ cd Android && ./gradlew :app:assembleDebug  # needs JDK 21 and the Android SDK
 adb install -r app/build/outputs/apk/debug/app-debug.apk
 ```
 
-Pass `-PskipWebBuild` to Gradle to reuse an existing `web/construction_calc_v*.html`. The APK is a debug build; a Play Store upload needs a signed release build, which is not set up here.
+Pass `-PskipWebBuild` to Gradle to reuse an existing `web/construction_calc_v*.html`. CI signs the release APK with the key in the repository's `RELEASE_*` secrets. A local `assembleRelease` without them produces an unsigned APK.
 
 ## Continuous integration
 
-- **`ci.yml`** runs on pushes to `main`, tags and pull requests: checks the version files agree, builds the single HTML file (verifying it has no external references), and builds the debug APK.
+- **`ci.yml`** runs on pushes to `main`, tags and pull requests: checks the version files agree, builds the single HTML file (verifying it has no external references), and builds the release APK.
 - **On a `v*` tag** it also publishes a GitHub release containing the HTML file and the APK.
 - **`pages.yml`** deploys the single HTML file to GitHub Pages on every push to `main`.
 
